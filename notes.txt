@@ -1,0 +1,48 @@
+Holistic way of estimating how much away from 12-tone? 
+    ft on spectrum
+    Success!!!
+Try cepstrum
+    ok
+Ask Tadao
+candidates: 
+    crepe, YIN, and my SFT
+
+papers {
+    "2001 Summary". Cuadra. Efficient Pitch Detection Techniques for Interactive Music. https://ccrma.stanford.edu/~pdelac/PitchDetection/icmc01-pitch.pdf. 
+    "Cepstrum". Noll. Short-Time Spectrum and “Cepstrum” Techniques for Vocal-Pitch Detection. https://asa.scitation.org/doi/pdf/10.1121/1.1918949. 
+}
+YINs {
+    https://github.com/patriceguyot/Yin
+    Librosa yin
+
+    Slower? 
+    https://github.com/amackillop/pyYIN
+    https://github.com/egrinstein/yin
+}
+SWIPEs {
+    https://pysptk.readthedocs.io/en/latest/generated/pysptk.sptk.swipe.html
+    https://github.com/kylebgorman/swipe
+    
+    Slower? 
+    https://github.com/dishagarg/SWIPE
+}
+
+insights {
+    Why reject f and favor 2f? The absence of 3f. 
+        cepstrum got this!
+        Looks like Subharmonic to Harmonic Ratio (SHR) also got it.
+            "recognize the pitch of inharmonic signals": is it necessary for human pitch? ["SHAPE"]
+    Common problem:
+        F1 is stronger than F0
+}
+
+archive {
+    bubble peak calling:
+        it's like bubble-sort: iterate everything once, and every bubble moved. 
+        Bubble has inertia. Y-axis delta adds energy to the bubble. 
+    Praat for  Python https://github.com/YannickJadoul/Parselmouth
+    pYIN! 
+        https://github.com/ronggong/pypYIN
+        librosa pYIN
+        pYIN is Recurrent
+}
