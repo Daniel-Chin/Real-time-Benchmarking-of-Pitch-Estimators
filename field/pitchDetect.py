@@ -4,16 +4,22 @@ from pyaudio import paFloat32
 from time import sleep
 import numpy as np
 
-# from yin import estimateF0
+# YIN
 # FRAME_LEN = 2048
 # SR = 44100
+# from yin import estimateF0
 
-from crepp import estimateF0, init
-init('full', 'D:\\Programs\\Anaconda\\Lib\\site-packages\\crepe')
-FRAME_LEN = 1024
-SR = 16000
+# CREPE
+# FRAME_LEN = 1024
+# SR = 16000
+# from crepp import estimateF0, init
+# init('full', 'D:\\Programs\\Anaconda\\Lib\\site-packages\\crepe')
 
-# from sft import estimateF0
+# SFT
+FRAME_LEN = 2048
+SR = 44100
+from sft import estimateF0, init
+init(FRAME_LEN, SR)
 
 def main():
   print('main()')
@@ -38,12 +44,12 @@ def getLatestFrame(stream):
   waste = stream.get_read_available() - FRAME_LEN
   waited = 0
   while waste < 0:
-    sleep(.001)
+    sleep(.001) # OS will not really sched us back in 1ms
     waited += 1
     waste = stream.get_read_available() - FRAME_LEN
   stream.read(waste)
   print('waste', waste, 'waited', waited)
-  return np.array(np.frombuffer(stream.read(FRAME_LEN), dtype=np.float32))
+  return np.frombuffer(stream.read(FRAME_LEN), dtype=np.float32)
 
 def pitch2Freq(x):
   return np.exp(x * 0.057762265046662105 + 2.1011784386926219)

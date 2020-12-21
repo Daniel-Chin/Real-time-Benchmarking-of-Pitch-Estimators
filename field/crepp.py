@@ -68,7 +68,7 @@ def to_local_average_cents(salience):
   return product_sum / weight_sum
 
 def estimateF0(frame, frame_len, sr):
-  activation = get_activation(frame, sr)
+  activation = get_activation(np.array(frame), sr)
   # confidence = activation.max()
   cents = to_local_average_cents(activation)
   frequency = 10 * 2 ** (cents / 1200)
