@@ -1,8 +1,6 @@
 Holistic way of estimating how much away from 12-tone? 
     ft on spectrum
     Success!!!
-Try cepstrum
-    ok
 Ask Tadao
 candidates: 
     crepe, YIN, and my SFT
@@ -45,4 +43,9 @@ archive {
         https://github.com/ronggong/pypYIN
         librosa pYIN
         pYIN is Recurrent
+    Spectral leak:
+        tends to 0 as window gets larger. use this?
+            use processing to make a spectral leakage visualizer.
+            Seperate project! 
+            Done! 
 }
