@@ -16,10 +16,10 @@ import numpy as np
 # init('full', 'D:\\Programs\\Anaconda\\Lib\\site-packages\\crepe')
 
 # SFT
-FRAME_LEN = 2048
-SR = 44100
-from sft import estimateF0, init
-init(FRAME_LEN, SR)
+# FRAME_LEN = 2048
+# SR = 44100
+# from sft import estimateF0, init
+# init(FRAME_LEN, SR)
 
 def main():
   print('main()')
@@ -39,7 +39,8 @@ def main():
       end = time()
       print('Breathing room', format((mid - start) / (end - start), '.0%'))
       print('#' * round((pitch - 48) * 6))
-
+  except KeyboardInterrupt:
+    pass
   finally:
     stream.stop_stream()
     stream.close()
