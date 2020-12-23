@@ -27,10 +27,7 @@ def sft(signal, size, bin):
 
 def refineGuess(guess, guess_score, hanned_spectrum):
     def loss(x):
-        return - sft(
-            hanned_spectrum, half_frame_len, 
-            x,
-        )
+        return - sft(hanned_spectrum, half_frame_len, x)
     return blindDescend(loss, .01, .4, guess)[0]
 
 def estimateF0(frame, frame_len, sr):
@@ -38,5 +35,5 @@ def estimateF0(frame, frame_len, sr):
     cepstrum = np.abs(rfft(hanned_spectrum))
     guess = np.argmax(cepstrum[LEFT_TRIM:]) + LEFT_TRIM
     return PROD_freqWithCpesBin / refineGuess(
-    guess, cepstrum[guess], hanned_spectrum
+        guess, cepstrum[guess], hanned_spectrum
     )
