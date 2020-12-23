@@ -1,9 +1,4 @@
-Holistic way of estimating how much away from 12-tone? 
-    ft on spectrum
-    Success!!!
 Ask Tadao
-candidates: 
-    crepe, YIN, and my SFT
 
 papers {
     "2001 Summary". Cuadra. Efficient Pitch Detection Techniques for Interactive Music. https://ccrma.stanford.edu/~pdelac/PitchDetection/icmc01-pitch.pdf. 
@@ -48,4 +43,10 @@ archive {
             use processing to make a spectral leakage visualizer.
             Seperate project! 
             Done! 
+    My SFT:
+        SFT part is more efficient than I thought
+        Processing visualizer conclusion:
+            Good for "a" and "i", bad for "o", "u", and "v". 
+            Not stable enough. Even eyeballing fails
+    Holistic way of estimating how much away from 12-tone? 
 }
