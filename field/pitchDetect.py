@@ -1,7 +1,7 @@
 print('importing...')
 import pyaudio
 from pyaudio import paFloat32
-from time import sleep
+from time import time
 import numpy as np
 
 # YIN
@@ -30,26 +30,30 @@ def main():
   )
   try:
     while True:
+      start = time()
       frame = getLatestFrame(stream)
+      mid = time()
       f0 = estimateF0(frame, FRAME_LEN, SR)
+      # f0 = 220
       pitch = freq2Pitch(f0)
+      end = time()
+      print('Breathing room', format((mid - start) / (end - start), '.0%'))
       print('#' * round((pitch - 48) * 6))
 
   finally:
     stream.stop_stream()
     stream.close()
     pa.terminate()
+    print('Resources released. ')
 
 def getLatestFrame(stream):
   waste = stream.get_read_available() - FRAME_LEN
-  waited = 0
-  while waste < 0:
-    sleep(.001) # OS will not really sched us back in 1ms
-    waited += 1
-    waste = stream.get_read_available() - FRAME_LEN
-  stream.read(waste)
-  print('waste', waste, 'waited', waited)
-  return np.frombuffer(stream.read(FRAME_LEN), dtype=np.float32)
+  if waste > 0:
+    print('Samples dropped', waste)
+    stream.read(waste)
+  return np.frombuffer(
+    stream.read(FRAME_LEN), dtype = np.float32
+  )
 
 def pitch2Freq(x):
   return np.exp(x * 0.057762265046662105 + 2.1011784386926219)
